@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel- learning from laracast
+                    Laravel- learning by laracast
 
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>

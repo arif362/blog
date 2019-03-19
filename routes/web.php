@@ -12,5 +12,27 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+     return view('welcome');
+
 });
+
+Route::get('/contact', function () {
+     return view('contact');
+
+});
+
+Route::get('/about', function () {
+
+    	$tasks = [
+			'Task -1 ',
+			'Task -2 ',
+			'Task -3 ',
+			'Task -4 '
+	];
+
+     return view('about', [
+     	'tasks' => $tasks
+     ]);
+
+});
+

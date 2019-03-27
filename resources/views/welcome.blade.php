@@ -5,7 +5,8 @@
 @section('content')
 <div class="container mt-3">
 
-<h4> Learning Laravel </h1>
+
+<h4> Learning {{ $home_title }} </h1>
 
 <p class="text-justify">
 The standard Lorem Ipsum passage, used since the 1500s

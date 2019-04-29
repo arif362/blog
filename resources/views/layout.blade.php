@@ -16,6 +16,12 @@
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
+        <style type="text/css">
+            .cross_sign{
+                text-decoration: line-through;
+            }
+        </style>
+
     </head>
 
     <body>
@@ -60,6 +66,9 @@
                 
                     <li class="nav-item">
                         <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/posts">Post</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/about">About</a>

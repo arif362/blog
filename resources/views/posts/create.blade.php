@@ -1,24 +1,16 @@
 @extends('layout')
 
-@section('title', 'Contact')
+@section('title', 'Post')
 
 @section('content')
 <div class="container">
-  <h4 class="mt-3"> Create New Contact </h4>
+  <h4 class="mt-3"> Create New Post </h4>
   <span class="clearfix"></span>
   <hr>
 
-  @if ($errors -> any())
-  <div class="alert alert-danger">
-    <ul>
-      @foreach ($errors -> all() as $error)
-      <li> {{ $error }} </li>
-      @endforeach
-    </ul>
-  </div>
-  @endif
+@include('errors')
 
-<form action="/contacts" method="post">
+<form action="/posts" method="post">
     @csrf
   <div class="form-group">
     <label for="title">Title:</label>

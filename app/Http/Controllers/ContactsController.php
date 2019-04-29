@@ -22,38 +22,37 @@ class ContactsController extends Controller
 
     public function store()
 	    {
-	    	$contact = new Contact();
-	    	$contact -> title = request('title');
-	    	$contact -> description = request('description');
-	    	$contact -> save();
+	    	request() -> validate([
+	    		'title' => ['required', 'max: 255'],
+	    		'description' => ['required', 'min:3']
+	    	]);
+	    	Contact::create(request(['title', 'description']));
 	        return redirect('/contacts');
 	    }
 
     
-    public function show($id)
+    public function show(Contact $contact)
 	    {
-	     	$contact = Contact::findOrFail($id);
 	     	return view('contacts.show', compact('contact'));
 	    }
 
-    public function edit($id)
+    public function edit(Contact $contact)
 	    {
-	    	$contact = Contact::findOrFail($id);
 	     	return view('contacts.edit', compact('contact'));
 	    }
 
-    public function update($id)
+    public function update(Contact $contact)
 	    {
-	    	$contact = Contact::findOrFail($id);
-	    	$contact -> title = request('title');
-	    	$contact -> description = request('description');
-	    	$contact -> save();
-	     	return redirect('/contacts');
+	    	request() -> validate([
+	    		'title' => ['required', 'max: 255'],
+	    		'description' => ['required', 'min:3']
+	    	]);
+	   		$contact -> update(request(['title', 'description']));
+	     	return view('contacts.show', compact('contact'));
 	    }
 
-    public function destroy($id)
+    public function destroy(Contact $contact)
 	    {
-	     	$contact = Contact::findOrFail($id);
 	     	$contact -> delete();
 	     	return redirect('/contacts');
 	    }

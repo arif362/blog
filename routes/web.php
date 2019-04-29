@@ -38,6 +38,9 @@
 	// Route::patch('/contacts/{contact}', 'ContactsController@update');
 	// Route::delete('/contacts/{contact}', 'ContactsController@destroy');
 	Route::resource('contacts', 'ContactsController');
+	Route::resource('posts', 'PostsController');
+	Route::resource('comments', 'CommentController');
+	Route::post('/posts/{post}/comments', 'CommentController@store');
 // Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');

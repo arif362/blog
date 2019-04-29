@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use App\Post;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -33,9 +34,13 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Post $post)
     {
-        //
+       $attributes = request() -> validate([
+            'body' => 'required'
+        ]);
+        $post->createComment($attributes);
+        return back();
     }
 
     /**
@@ -69,7 +74,11 @@ class CommentController extends Controller
      */
     public function update(Request $request, Comment $comment)
     {
-        //
+        //  $attributes = request() -> validate([
+            
+        // ]);
+        $comment->createApproval(request()->has('is_approved'));
+        return back();
     }
 
     /**

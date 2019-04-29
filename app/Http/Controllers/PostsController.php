@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Post;
 class PostsController extends Controller
 {
     /**
@@ -13,7 +13,8 @@ class PostsController extends Controller
      */
     public function index()
     {
-        //
+            $posts = Post::all();
+            return view('posts.index', compact('posts'));
     }
 
     /**
@@ -23,7 +24,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -34,7 +35,12 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        request() -> validate([
+                'title' => ['required', 'max: 255'],
+                'description' => ['required', 'min:3']
+            ]);
+            Post::create(request(['title', 'description']));
+            return redirect('/posts');
     }
 
     /**
@@ -43,9 +49,9 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Post $post)
     {
-        //
+       return view('posts.show', compact('post'));
     }
 
     /**
@@ -54,9 +60,9 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        return view('posts.edit', compact('post'));
     }
 
     /**
@@ -66,9 +72,14 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Post $post)
     {
-        //
+               request() -> validate([
+                'title' => ['required', 'max: 255'],
+                'description' => ['required', 'min:3']
+            ]);
+            $post -> update(request(['title', 'description']));
+            return view('posts.show', compact('post'));
     }
 
     /**
@@ -77,8 +88,9 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+            $post -> delete();
+            return redirect('/posts');
     }
 }
